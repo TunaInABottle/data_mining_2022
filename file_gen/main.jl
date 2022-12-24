@@ -34,8 +34,8 @@ end
 
 parsed_args = parse_commandline()
 
-const USERS_N::Int = parsed_args["arg1"]#parse(Int, ARGS[1])
-const QUERIES_N::Int = parsed_args["arg2"]#parse(Int, ARGS[2])
+const USERS_N::Int = parsed_args["arg1"]
+const QUERIES_N::Int = parsed_args["arg2"]
 const FOLDER_NAME::String = parsed_args["folder"]
 
 if !isdir("../data/$(FOLDER_NAME)")
@@ -44,7 +44,9 @@ end
 
 println("Reading queries cont...")
 
-query_kv = CSV.read("../data/queries_cont.csv", DataFrame, header=true)
+query_kv = CSV.read("queries_content.csv", DataFrame, header=true)
+# writing it in the new folder
+CSV.write("../data/$(FOLDER_NAME)/query_content.csv", query_kv)
 
 query_items::Dict{String, Array{Any}} = Dict{String, Any}()
 for (idx, col_name) in ProgressBar(enumerate(names(query_kv)))
