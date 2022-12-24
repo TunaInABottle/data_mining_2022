@@ -3,22 +3,35 @@ module UserClass
     using Printf, StatsBase
     export User, Query, sample_rating, to_query_string
 
-    struct User
-        id::String
-        rating_interval::UnitRange{Int}
-        # id : integer that identify the User
-        # max : maximum number of users
-        User(id::Int, max::Int) = new(id_pad("user", id, max), 1:100)
-    end
-    Base.show(io::IO, ::MIME"text/plain", user::User) = @printf(io, "User %s interval %s", user.id, user.rating_interval)
+    const TRENDS_WEIGTHS = Weights([10, 10, 60, 20, 5]) # rated: highly, lowly, average, divisive, randomly
+
+    const QUERY_LENGTH_INTERVAL = 1:3
+    const QUERY_LENGTH_WEIGTHS = Weights([15, 75, 10])
+    const LEGTHEN_QUERY_CHANCE::Float64 = 0.3 # after deciding the base length, which is the probability to make it even longer
 
     function id_pad(name::String, n::Int, max::Int)::String
         return "$(name)_$(lpad(n, length(string(max)), '0'))"
     end
 
-    ######################
-    ##### query part #####
-    ######################
+    #################
+    ##### users #####
+    #################
+
+    # id : integer that identify the User
+    struct User
+        id::String
+        rating_interval::UnitRange{Int}
+        # max : maximum number of users, used for padding
+        User(id::Int, max::Int) = new(id_pad("user", id, max), 1:100)
+    end
+    Base.show(io::IO, ::MIME"text/plain", user::User) = @printf(io, "User %s interval %s", user.id, user.rating_interval)
+
+
+    ########################
+    ##### query trends #####
+    ########################
+
+
 
     @enum TREND begin
         #null_trend = 0
@@ -31,9 +44,14 @@ module UserClass
     const QUERY_TREND_VALS = Set(Int(val) for val in instances(TREND))
     
     function sample_trend()::TREND
-        return TREND(sample(collect(QUERY_TREND_VALS), Weights([10, 10, 60, 20, 5])))
+        return TREND(sample(collect(QUERY_TREND_VALS), TRENDS_WEIGTHS))
     end
-    
+
+
+    ###################
+    ##### queries #####
+    ###################
+ 
     
     struct Query
         id::String
@@ -41,13 +59,6 @@ module UserClass
         density::Float64
         rating_interval::UnitRange{Int}
         cont::Dict{String, Any}
-    
-        # function Query(id::Int, max::Int)
-        #     trend::TREND = sample_trend()
-        #     density::Float64 = random_trend_density(trend)
-        #     rating_interval::UnitRange{Int} = random_rating_interval(trend)
-        #     new(id_pad("query", id, max), trend, density, rating_interval)
-        # end
 
         function Query(id::Int, max::Int, cont_set::Dict{String, Array{Any}})
             trend::TREND = sample_trend()
@@ -61,15 +72,14 @@ module UserClass
     
 
     function random_query_cont(cont_set::Dict{String, Array{Any}})::Dict{String, Any}
-        keys_n = sample(1:3, Weights([15, 75, 10]))
+        keys_n = sample(QUERY_LENGTH_INTERVAL, QUERY_LENGTH_WEIGTHS)
         keys_vect = collect(keys(cont_set))
         query_sampled_keys::Vector{String} = sample(keys_vect, keys_n, replace=false)
 
-        # add further queries (so to models queries longer than 3)
-        success_chance::Float64 = 0.3
+        # add further queries (so to models queries longer than the baseline)
         stop_flag::Bool = false
         while !stop_flag && length(query_sampled_keys) < length(keys_vect)
-            if rand() < success_chance
+            if rand() < LEGTHEN_QUERY_CHANCE
                 left_keys = setdiff(keys_vect, query_sampled_keys)
                 push!(query_sampled_keys, sample(left_keys, 1, replace=false)[1])
             else
@@ -78,16 +88,12 @@ module UserClass
         end
 
         # println("query_sampled_keys: $query_sampled_keys")
-        
         query_cont = Dict{String, Any}()
-        
         for key in query_sampled_keys
             query_cont[key] = sample(cont_set[key], 1, replace=false)[1]
         end
 
-        println("resulting query: $query_cont\n\n")
-
-
+        #println("resulting query: $query_cont\n\n")
         return query_cont
     end
 

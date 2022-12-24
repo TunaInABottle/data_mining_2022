@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,windows,macos,virtualenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,windows,macos,virtualenv
 
+# custom
+data/*
+
 ### macOS ###
 # General
 .DS_Store
