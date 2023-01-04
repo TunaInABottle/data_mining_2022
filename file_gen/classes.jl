@@ -139,10 +139,21 @@ module UserClass
     function sample_rating(query::Query, users::Vector{User})::Vector{Union{Missing,Int}}
         ratings = Vector{Union{Missing, Int}}(missing, length(users))
 
-        # sample scores
-        scores::Vector{Int} = sample(query.rating_interval, Int(round(query.density * length(users))), replace=false)
-        #sample users
-        users_idx::Vector{Int} = sample(1:length(users), Int(round(query.density * length(users))), replace=false)
+        scores = Vector{Int}()
+        users_idx = Vector{Int}()
+
+        try 
+            # sample scores
+            scores = sample(query.rating_interval, Int(round(query.density * length(users))))
+            #sample users
+            users_idx = sample(1:length(users), Int(round(query.density * length(users))), replace=false)
+        catch e
+            println("Error sampling query $query")
+            println("Items to be sampled $(Int(round(query.density * length(users))))")
+            println("length(users): $(length(users))")
+            println("scores: $(scores)")
+            throw(e)
+        end
 
         # assign scores to users
         for (idx, user) in enumerate(users_idx)
