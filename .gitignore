@@ -271,3 +271,4 @@ docs/site/
 Manifest.toml
 
 # End of https://www.toptal.com/developers/gitignore/api/julia
+.vscode/settings.json
