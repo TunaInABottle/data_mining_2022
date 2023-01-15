@@ -3,7 +3,7 @@ from typing import List, Tuple
 import statistics
 
 def density(df:pd.DataFrame) -> "pd.Series[float]":
-    if len(df) == 0:
+    if len(df) == 0 or len(df.columns) == 0:
         return None
     return statistics.mean(df.isna().sum()/(len(df)))
 
@@ -32,7 +32,7 @@ def get_query_dict(queries:pd.DataFrame) -> List[dict]:
 
 
 
-def pick_best_query_set(utility_matrix: pd.DataFrame, queries: pd.DataFrame, possible_query_cont: pd.DataFrame, candidate = ["", 0], eval_func = density):
+def pick_best_query_set(utility_matrix: pd.DataFrame, queries: pd.DataFrame, possible_query_cont: pd.DataFrame, candidate = {}, eval_func = density):
     """Pick the best set of queriesv based on a metric of choice
 
     :param utility_matrix: the utility matrix from which calculate the density
@@ -43,15 +43,15 @@ def pick_best_query_set(utility_matrix: pd.DataFrame, queries: pd.DataFrame, pos
     :returns: the best key and its density
     """
     # @TODO make candidate as dict
-
+    
     # iterate query keys
-    candidate = pick_best_by_query_key(utility_matrix, queries, possible_query_cont, candidate, eval_func)
+    candidate = add_best_query_key(candidate, utility_matrix, queries, possible_query_cont, eval_func)
 
     print(candidate)
-    return(candidate[0])
+    return(candidate)
 
-def pick_best_by_query_key(utility_matrix: pd.DataFrame, queries: pd.DataFrame, possible_query_cont: pd.DataFrame, candidate: Tuple[dict, float], eval_func = density):
-    """@TODO verify and finish this description
+def add_best_query_key(candidate: dict, utility_matrix: pd.DataFrame, queries: pd.DataFrame, possible_query_cont: pd.DataFrame, eval_func = density):
+    """Add the best query key to the current candidate
 
     :param utility_matrix: the utility matrix from which calculate the density
     :param queries: full description of the queries
@@ -60,24 +60,24 @@ def pick_best_by_query_key(utility_matrix: pd.DataFrame, queries: pd.DataFrame, 
     :param eval_func: the function to evaluate the subset of queries
     :returns: the best key and its density
     """
-    # @TODO needed for string to dict conversion
+    # define the starting value of the candidate
+    starting_value: float = calculate_queries_set_value(utility_matrix, queries, candidate, eval_func = eval_func)
+    new_candidate: Tuple[dict, float] = [candidate, starting_value]
+
     # remove the already selected queries
-    #unused_query_keys = possible_query_cont.drop(columns = candidate[0].keys()).columns
+    unused_query_keys: List[str] = possible_query_cont.drop(columns = list(candidate.keys())).columns
 
-    new_candidate: Tuple[dict, float] = candidate
+    # iterate existing non-chosen keys
+    for query_key in unused_query_keys:
+        new_query_dict: dict = candidate.copy()
+        new_query_dict[query_key] = None
+        query_set_value:float = calculate_queries_set_value(utility_matrix, queries, new_query_dict, eval_func = eval_func)
+        if query_set_value is not None and query_set_value > new_candidate[1]:
+            # proclaim it as the new best
+            new_candidate = [new_query_dict, query_set_value]
+    return(new_candidate[0])
 
-    # iterate query keys
-    for query_key in possible_query_cont.columns:
-        query_set_value = calculate_queries_set_value(utility_matrix, queries, query_key, eval_func = eval_func)
-        if query_set_value > new_candidate[1]:
-            #new_query_set = candidate[0].copy()
-            #new_query_set[query_key] = possible_query_cont[query_key]
-            #new_candidate = [new_query_set, query_set_value]
-            new_candidate = [query_key, query_set_value]
-    return(new_candidate)
-
-
-def calculate_queries_set_value(utility_matrix: pd.DataFrame, queries: pd.DataFrame, col_names: List[str], eval_func = density) -> float:
+def calculate_queries_set_value(utility_matrix: pd.DataFrame, queries: pd.DataFrame, query_subset: List[str], eval_func = density) -> float:
     """Calculate the specified metric over a specified subset of queries
 
     :param utility_matrix: the utility matrix from which calculate the function
@@ -86,18 +86,19 @@ def calculate_queries_set_value(utility_matrix: pd.DataFrame, queries: pd.DataFr
     :param eval_func: the function to evaluate the subset of queries
     :returns: the density of the subset of columns
     """
-    filtered_queries_ids = queries.iloc[[col_names in q for q in queries["content"]]]["id"]
+    if query_subset == {}:
+        return 0
+
+    filtered_queries_ids = select_queries_subset(query_subset, queries)["id"]
     return eval_func(utility_matrix[filtered_queries_ids])
 
-def get_query_values(queries: pd.DataFrame, query_key: str) -> List[str]:
-    """Get the values of a query
+def select_queries_subset(query_dict: dict, query_data: pd.DataFrame):
+    """Makes a subset of the queries that match 'query_dict'
 
-    :param queries: a table containing all keys and values a query can have
-    :param query_keys: the name of the query key
-    :returns: the values of the query for a specified key
+    :param query_dict: which elements are going to be filtered
+    :param query_data: the query dataset
+    :returns the filtered query dataset
     """
-    return queries[query_key].values()
-
-
-# remove None values from list
-# list(filter(lambda item: item is not None, test_list))
+    query_elms = list(query_dict.keys()) + list(filter(lambda item: item is not None, query_dict.values()))
+    fits_criteria = [all(elm in query for elm in query_elms ) for query in query_data["content"]]
+    return query_data.iloc[fits_criteria]

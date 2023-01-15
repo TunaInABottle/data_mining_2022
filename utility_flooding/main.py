@@ -18,7 +18,18 @@ def main():
 
     #print(possible_query_cont.columns)
 
+    print("calc first")
     queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont)
+    print("finish calc first, calc second")
+    queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont, candidate=queries_to_fill)
+    print("3")
+    queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont, candidate=queries_to_fill)
+    print("4")
+    queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont, candidate=queries_to_fill)
+    print("5")
+    queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont, candidate=queries_to_fill)
+    print("6")
+    queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont, candidate=queries_to_fill)
 
 
 
