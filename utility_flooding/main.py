@@ -13,21 +13,23 @@ data_source = "size_30" # which folder in data has the reference data
 
 def main():
     utility_matrix: pd.DataFrame = pd.read_csv("../data/" + data_source + "/utility_matrix.csv")
-    possible_query_cont: pd.DataFrame = pd.read_csv("../data/" + data_source + "/query_content.csv")
-    queries_raw: List[dict] = pd.read_csv("../data/" + data_source + "/queries.csv")
+    query_combinations: pd.DataFrame = pd.read_csv("../data/" + data_source + "/query_content.csv")
+    asked_queries: List[dict] = pd.read_csv("../data/" + data_source + "/queries.csv")
 
 
 
-    queries_to_fill = pick_best_query_set(utility_matrix, queries_raw, possible_query_cont)
+    queries_to_fill = pick_best_query_set(utility_matrix, asked_queries, query_combinations)
 
     print(queries_to_fill)
 
-    query_ids = select_queries_subset(queries_to_fill, queries_raw)["id"]
-    print(list(query_ids))
+    query_ids = select_queries_subset(queries_to_fill, asked_queries)["id"]
+    print(len(query_ids))
 
     print(utility_matrix[query_ids])
 
+    # utility_matrix[query_ids] = utility_matrix[query_ids].fillna(2)
 
+    # print(utility_matrix)
 
 if __name__ == "__main__":
     main()
