@@ -5,6 +5,7 @@ import pandas as pd
 from typing import List
 import statistics
 from svd_flood import pick_best_query_set, select_queries_subset
+from fill_data import collaborative_filtering
 #from pandera.typing import Series
 
 data_source = "size_30" # which folder in data has the reference data
@@ -19,17 +20,15 @@ def main():
 
 
     queries_to_fill = pick_best_query_set(utility_matrix, asked_queries, query_combinations)
-
-    print(queries_to_fill)
-
     query_ids = select_queries_subset(queries_to_fill, asked_queries)["id"]
-    print(len(query_ids))
 
     print(utility_matrix[query_ids])
 
-    # utility_matrix[query_ids] = utility_matrix[query_ids].fillna(2)
+    utility_matrix[query_ids] = collaborative_filtering(utility_matrix[query_ids])
 
-    # print(utility_matrix)
+
+    print(utility_matrix[query_ids])
+
 
 if __name__ == "__main__":
     main()

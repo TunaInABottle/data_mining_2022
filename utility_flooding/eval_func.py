@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import Callable, Union
+from typing import Callable, Union, Optional
 import statistics
 
 def density(df:pd.DataFrame) -> Union[float, None]:
@@ -7,7 +7,7 @@ def density(df:pd.DataFrame) -> Union[float, None]:
         return None
     return 1 - statistics.mean(df.isna().sum()/(len(df)))
 
-def below_cap(func_name: Callable[[pd.DataFrame], float], f_val: float) -> bool:
+def below_cap(func_name: Callable[[pd.DataFrame], Optional[float]], f_val: float) -> bool:
     if(" density " in str(func_name)):
         return f_val < 1
     raise Exception("Unexpected function name: " + str(func_name))
