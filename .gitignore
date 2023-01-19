@@ -2,7 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,windows,macos,virtualenv
 
 # custom
-data/*
+data/assignment_data/
+data/aux_data/
 
 ### macOS ###
 # General
