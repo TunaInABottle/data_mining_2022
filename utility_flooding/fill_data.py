@@ -3,7 +3,7 @@ import numpy as np
 from typing import List
 from numpy.linalg import norm
 
-def collaborative_filtering(df_to_fill: pd.DataFrame) -> None:
+def collaborative_filtering(df_to_fill: pd.DataFrame) -> pd.DataFrame:
     """Fill the matrix with collaborative filtering
     
     :param df_to_fill: the matrix to fill
@@ -13,7 +13,6 @@ def collaborative_filtering(df_to_fill: pd.DataFrame) -> None:
     
     for i in range(len(df_to_fill)):
         for j in range(len(df_to_fill.columns)):
-            print(f"iterating column {j}")
             if pd.isna(df_to_fill.iloc[i,j]):
                 col_similarities = cosine_similarity(centered_df[centered_df.columns[j]], centered_df)
                 col_similarities = list(np.delete(col_similarities, j)) #remove the similarity with itself

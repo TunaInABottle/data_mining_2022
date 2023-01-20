@@ -1,6 +1,5 @@
 import pandas as pd
-from typing import List, Tuple, Dict, Callable, NewType, Union, Optional
-import statistics
+from typing import List, Tuple, Dict, Callable, NewType, Optional
 from eval_func import density, below_cap
 
 Query = NewType('Query', Dict[str, Optional[str]])

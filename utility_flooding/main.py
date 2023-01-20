@@ -26,6 +26,7 @@ def main():
 
 
     print(utility_matrix[query_ids])
+    print(utility_matrix)
 
     
     
