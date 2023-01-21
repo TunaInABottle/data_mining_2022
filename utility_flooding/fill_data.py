@@ -24,9 +24,10 @@ def collaborative_filtering(df_to_fill: pd.DataFrame) -> pd.DataFrame:
                 user_rates = list(centered_df.iloc[i])
                 user_rates.pop(j) #remove the rate of the column to fill
 
-                #print(f"end value in cell {i} {j} = {np.dot(col_similarities, user_rates)/sum(col_similarities)}")
-                return_df.iloc[i,j] = (np.dot(col_similarities, user_rates)/sum(col_similarities)) + col_means[df_to_fill.columns[j]]
-                return_df.iloc[i,j] = min(max(int(return_df.iloc[i,j]), 0), 100) #round to the nearest integer and clamp between 0 and 100
+                cell_value = (np.dot(col_similarities, user_rates)/sum(col_similarities)) + col_means[df_to_fill.columns[j]]
+                cell_value = min(max(int(cell_value), 0), 100) #round to the nearest integer and clamp between 0 and 100
+                #print(f"end value in cell {i} {j} = cell_value")
+                return_df.iloc[i,j] = cell_value
     return return_df
 
 def item_centering_filling(df: pd.DataFrame, alpha = 0.0000001) -> pd.DataFrame:
