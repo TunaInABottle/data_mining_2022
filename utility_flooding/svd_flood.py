@@ -18,8 +18,14 @@ def elementwise_or(list1: List[bool], list2: List[bool]) -> List[bool]:
 
 ###########
 
-def controlled_flooding(utility_matrix: pd.DataFrame, asked_queries: pd.DataFrame, query_combinations: pd.DataFrame):
-    """@TODO"""
+def controlled_flooding(utility_matrix: pd.DataFrame, asked_queries: pd.DataFrame, query_combinations: pd.DataFrame) -> pd.DataFrame:
+    """fills the utility matrix with the help a set of queries
+    
+    :param utility_matrix: the utility matrix
+    :param asked_queries: full description of the queries
+    :param query_combinations: a table containing all keys and values a query can have
+    :returns: the filled utility matrix"""
+
     new_matrix = utility_matrix.copy()
     while density(new_matrix) != 1:
         print(f"New iteration... current density = {density(new_matrix)}")
@@ -52,7 +58,7 @@ def query_dict(query_string:str, query_id:str) -> Query:
 
 
 
-def pick_best_query_set(utility_matrix: pd.DataFrame, asked_queries: pd.DataFrame, query_combinations: pd.DataFrame, candidate = {}, min_cols = 3, func: Callable[[pd.DataFrame], Optional[float]] = density) -> List[Query]:
+def pick_best_query_set(utility_matrix: pd.DataFrame, asked_queries: pd.DataFrame, query_combinations: pd.DataFrame, min_cols = 3, func: Callable[[pd.DataFrame], Optional[float]] = density) -> List[Query]:
     """Pick the best set of queries based on a metric of choice
 
     :param utility_matrix: the utility matrix
@@ -66,7 +72,6 @@ def pick_best_query_set(utility_matrix: pd.DataFrame, asked_queries: pd.DataFram
     blacklist: List[Query] = []
     subset_maximiser: List[Query] = []
     query_parent: Query = {}
-
     cap: bool = True #removes cap of func
 
 
@@ -114,6 +119,12 @@ def get_a_grandparent(query_dict: Query) -> Query:
     return query_dict
 
 def empty_row_in_subset(utility_matrix: pd.DataFrame, asked_queries: pd.DataFrame, queries: List[Query]) -> bool:
+    """Check if there is a row with all NaN values
+
+    :param utility_matrix: the utility matrix
+    :param asked_queries: full description of the queries
+    :param queries: the list of queries to test
+    :returns: True if there is a row with all NaN values"""
     tested_subset: pd.DataFrame = utility_matrix[select_queries_subset(queries, asked_queries)["id"]]
     if tested_subset.empty:
         return True
@@ -133,7 +144,7 @@ def greedy_pick_query_subset(utility_matrix: pd.DataFrame, start_query: Query, a
     :param query_combinations: a table containing all keys and values a query can have
     :param blacklist: list of queries that should not be considered
     :param func: the function used to evaluate the subset of queries
-    :cap @TODO
+    :cap if true, filters elements based on 'func' value and parameter
     :returns: the best query that maximises 'eval_func'
     """
     child: Tuple[Query, float] = [{}, 0.0]
@@ -171,6 +182,7 @@ def add_best_query_value(candidate: Query, utility_matrix: pd.DataFrame, asked_q
     :param query_combinations: a table containing all keys and values a query can have
     :param blacklist: list of queries that should not be considered
     :param eval_func: the function used to evaluate the subset of queries
+    :cap if true, filters elements based on 'eval_func' value and parameter
     :returns: the best query that maximises 'eval_func' and the value of 'eval_func' for that query when a new value is defined
     """
     # define the starting value of the candidate
@@ -203,6 +215,7 @@ def add_best_query_key(candidate: Query, utility_matrix: pd.DataFrame, asked_que
     :param query_combinations: a table containing all keys and values a query can have
     :param blacklist: list of queries that should not be considered
     :param eval_func: the function used to evaluate the subset of queries
+    :cap if true, filters elements based on 'eval_func' value and parameter
     :returns: the best query that maximises 'eval_func' and the value of 'eval_func' for that query when a new key is added
     """
     # define the starting value of the candidate
@@ -232,6 +245,7 @@ def calc_queries_set_value(utility_matrix: pd.DataFrame, asked_queries: pd.DataF
     :param asked_queries: full description of the queries
     :param query_subset: the elements over which filter
     :param eval_func: the function to evaluate the subset of queries
+    :cap if true, filters elements based on 'eval_func' value and parameter
     :returns: the density of the subset of columns, 0 if 'query_subset' is empty
     """
     if query_subset == {}:
