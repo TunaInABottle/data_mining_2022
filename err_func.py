@@ -42,7 +42,7 @@ def Masked_df (df, test_ratio=0.2):
 
 
 def test_err (utility_matrix, asked_queries, query_combinations, test_ratio=0.2):
-  #Root-mean-square error
+  #Root-mean-square error normalised 
   masked_matrix, L= Masked_df (utility_matrix, test_ratio)
   filled_masked_utility= controlled_flooding(masked_matrix, asked_queries, query_combinations)
   
@@ -52,10 +52,10 @@ def test_err (utility_matrix, asked_queries, query_combinations, test_ratio=0.2)
   for i in L:
     s+= (i[0] - filled_masked_utility[i[1], i[2]])**2
   
-  return( math.sqrt(s/len(L)) )
+  return( math.sqrt(s/len(L)) /100 )
 
 
-def cross_valid (utility_matrix, asked_queries, query_combinations, n_folds=3, test_ratio=[0.2 for _ in range(n_folds)]):
+def cross_valid (utility_matrix, asked_queries, query_combinations, n_folds=3, test_ratio=[0.2, 0.2, 0.2]):
   """
   :param n_folds: Number of different selections of testing samples over which 
                   the process of testing will be repeated (default 3)
