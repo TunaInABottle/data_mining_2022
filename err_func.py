@@ -41,9 +41,9 @@ def Masked_df (df, test_ratio=0.2):
   return(new_df, l)
 
 
-def test_err (utility_matrix, asked_queries, query_combinations):
+def test_err (utility_matrix, asked_queries, query_combinations, test_ratio=0.2):
   #Root-mean-square error
-  masked_matrix, L= Masked_df (utility_matrix)
+  masked_matrix, L= Masked_df (utility_matrix, test_ratio)
   filled_masked_utility= controlled_flooding(masked_matrix, asked_queries, query_combinations)
   
   filled_masked_utility=np.array(filled_masked_utility.drop('user_id', axis=1))
@@ -53,3 +53,16 @@ def test_err (utility_matrix, asked_queries, query_combinations):
     s+= (i[0] - filled_masked_utility[i[1], i[2]])**2
   
   return( math.sqrt(s/len(L)) )
+
+
+def cross_valid (utility_matrix, asked_queries, query_combinations, n_folds=3, test_ratio=[0.2 for _ in range(n_folds)]):
+  """
+  :param n_folds: Number of different selections of testing samples over which 
+                  the process of testing will be repeated (default 3)
+  :param n_folds: a list of test_ratio for each train/test split (defaut 0.2 for all iterations)
+  """
+  s=0
+  for i in range(n_folds):
+    s+= test_err (utility_matrix, asked_queries, query_combinations, n_folds[i])
+  
+  return (s/n_folds)
