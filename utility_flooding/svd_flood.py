@@ -76,7 +76,7 @@ def pick_best_query_set(utility_matrix: pd.DataFrame, asked_queries: pd.DataFram
 
 
     # add a query set as long as a minimum of column is picked and the result have a value for each query
-    while len(select_queries_subset(subset_maximiser, asked_queries)["id"]) < min_cols or empty_row_in_subset(utility_matrix, asked_queries, subset_maximiser): 
+    while len(select_queries_subset(subset_maximiser, asked_queries)["id"]) < min_cols:# or empty_row_in_subset(utility_matrix, asked_queries, subset_maximiser): 
         # greedily add key/values to the dict that maximise eval_func
         query_optimum, query_parent = greedy_pick_query_subset(utility_matrix, query_parent, asked_queries, query_combinations, blacklist, func, cap)
 
