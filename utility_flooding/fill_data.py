@@ -14,7 +14,7 @@ def collaborative_filtering(df_to_fill: pd.DataFrame) -> pd.DataFrame:
     :returns: dataframe whose null are filled with collaborative filtering"""
     return_df = df_to_fill.copy()
     centered_df, col_means = item_centering_filling(df_to_fill.copy())
-    #print(centered_df)
+    
     for i in range(len(df_to_fill)):
         for j in range(len(df_to_fill.columns)):
             if pd.isna(df_to_fill.iloc[i,j]):
