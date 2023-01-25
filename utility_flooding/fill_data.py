@@ -50,13 +50,13 @@ def cosine_similarity(v1: pd.DataFrame, v2: List) -> List[float]:
     
     :param v1: dataframe of reference
     :param v2: vector to compare
-    :returns: A list of cosine similarities"""
+    :returns: A list of cosine similarities of 'v1' in the ist of 'v2'"""
     v1 = np.array(v1)
     v2 = v2.to_numpy()
     res = np.nan
     try:
         res = np.dot(v1,v2)/(norm(v2, axis=0)*norm(v1))
     except RuntimeWarning:
-        print(f"RuntimeWarning happened maybe you did 0 divided by 0?\nv1 = \n{v1}\nv2 = \n{v2}")
+        print(f"RuntimeWarning happened maybe you did 0/0?\nv1 = \n{v1}\nv2 = \n{v2}")
         raise RuntimeWarning
     return res
