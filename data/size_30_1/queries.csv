@@ -1,0 +1,31 @@
+id,content
+query_01,Profession=architect AND City=Rome AND Age=38 AND Name=Ainsley
+query_02,Profession=pharmacist AND City=Moscow
+query_03,Profession=advertising executive AND Age=34
+query_04,Profession=financial analyst AND Age=90
+query_05,Profession=agricultural engineer AND Surname=Johnson
+query_06,Profession=teacher AND Surname=Sanders AND Age=96 AND Name=Annie
+query_07,Profession=psychologist AND City=Dublin
+query_08,City=Odessa AND Surname=Hughes AND Age=104
+query_09,City=Tirana
+query_10,City=Toronto AND Age=69
+query_11,Profession=barber AND Name=Emily
+query_12,City=Berlin AND Surname=Flores
+query_13,Surname=Sullivan AND Age=82
+query_14,Profession=baker AND Surname=Long AND Age=19
+query_15,Profession=aerospace engineer AND Surname=Henderson AND Age=67
+query_16,Profession=therapist AND Surname=Foster
+query_17,Age=29 AND Name=Alexis
+query_18,City=Plzen AND Surname=Gonzalez
+query_19,Profession=biomedical scientist AND Surname=Stewart AND Age=30 AND Name=Delilah
+query_20,Profession=air traffic controller AND City=Moscow AND Surname=Edwards
+query_21,Profession=interior designer AND Surname=Graham AND Age=6 AND Name=Filippo
+query_22,Surname=Rivera AND Age=39 AND Name=Liam
+query_23,Profession=meteorologist AND City=Stockholm
+query_24,Profession=pharmacist AND City=Odessa
+query_25,Profession=athletic trainer AND Surname=Watson AND Age=10 AND Name=Dave
+query_26,Profession=technologist AND City=Tokyo AND Name=Filippo
+query_27,Age=46
+query_28,Profession=airline pilot AND City=Christchurch AND Age=29
+query_29,Profession=civil engineer AND Surname=Morris AND Name=Carson
+query_30,City=Bologna AND Name=Ava

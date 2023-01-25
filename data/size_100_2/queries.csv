@@ -1,0 +1,101 @@
+id,content
+query_001,City=Barcelona
+query_002,Profession=environmental scientist AND City=Zurich
+query_003,Profession=carpenter AND City=Riga
+query_004,Profession=librarian AND Age=15 AND Name=Amelia
+query_005,City=Manchester AND Surname=Graham AND Name=Brayden
+query_006,Surname=Stewart AND Name=Aiden
+query_007,Profession=historian AND Age=31 AND Name=Michael
+query_008,Profession=psychologist AND City=Oslo AND Age=98 AND Name=Carter
+query_009,City=Bydgoszcz
+query_010,Profession=business manager AND City=Chisinau AND Surname=Cole AND Age=82 AND Name=William
+query_011,Profession=librarian AND Surname=Graham
+query_012,Profession=data scientist AND Age=37
+query_013,Profession=social worker AND Age=39
+query_014,Profession=botanist AND City=London AND Surname=Griffin AND Name=Christina
+query_015,Profession=astronomer AND City=Lisbon
+query_016,Profession=political scientist AND City=Stockholm
+query_017,Profession=teacher AND City=Miami
+query_018,Profession=industrial designer AND City=Tirana AND Name=Cora
+query_019,Age=90
+query_020,Profession=business manager AND Surname=Jackson
+query_021,Age=83 AND Name=Bitmap
+query_022,City=Yerevan AND Name=Delilah
+query_023,Profession=airline pilot AND City=Torun
+query_024,Age=74 AND Name=Colton
+query_025,Profession=air traffic controller AND City=Yerevan AND Age=78
+query_026,Profession=pharmacist
+query_027,Profession=biomedical engineer AND Surname=Nelson
+query_028,Profession=nurse AND City=Dubrovnik
+query_029,Profession=judge AND City=Ljubljana AND Name=Victoria
+query_030,Profession=pilot AND City=Montreal
+query_031,Profession=homeopath AND City=Rotterdam AND Surname=Torres
+query_032,Surname=Patterson
+query_033,Profession=optometrist AND Age=76
+query_034,Surname=Jackson AND Name=Alyssa
+query_035,Profession=archaeologist AND City=Christchurch AND Age=29
+query_036,City=Tauranga AND Name=Olivia
+query_037,City=Lima AND Age=49
+query_038,Profession=psychologist AND City=Manchester
+query_039,City=Marseille AND Surname=Morgan AND Age=83 AND Name=Alex
+query_040,City=Sofia AND Age=99
+query_041,Name=Charlotte
+query_042,City=Moscow AND Age=43
+query_043,Profession=biomedical engineer AND City=Rio de Janeiro
+query_044,Surname=Wood AND Name=Filipa
+query_045,Name=Michael
+query_046,Age=24 AND Name=Campbell
+query_047,Surname=Stewart AND Name=Bryan
+query_048,Profession=civil engineer AND City=Istanbul AND Age=14
+query_049,City=Plzen AND Age=35
+query_050,City=Miami AND Name=Carson
+query_051,City=Belgrade AND Name=Cody
+query_052,Profession=carpenter AND City=St. Petersburg AND Age=81 AND Name=Oliver
+query_053,Profession=administrator AND City=Venice AND Surname=Simmons AND Age=22
+query_054,City=Riga AND Age=21
+query_055,Profession=beautician AND City=Hawaii AND Name=Dallas
+query_056,Profession=agricultural scientist AND Surname=Ross
+query_057,Age=21
+query_058,Age=40 AND Name=Ava
+query_059,Profession=biomedical engineer AND Surname=Hughes AND Age=49
+query_060,City=Tallinn AND Surname=Mitchell
+query_061,Age=32 AND Name=Elizabeth
+query_062,Profession=fire fighter AND Surname=Bryant
+query_063,Profession=beautician AND City=San Francisco
+query_064,Profession=financial manager AND Name=Andrew
+query_065,Profession=architect AND Surname=Mitchell
+query_066,Profession=biomedical engineer AND Age=37
+query_067,Profession=engineer AND Age=12
+query_068,City=Bucharest AND Surname=Powell AND Name=Madison
+query_069,City=Baku AND Surname=Sanders
+query_070,Profession=veterinarian AND Name=Ben
+query_071,Name=Annie
+query_072,Surname=Butler AND Age=41
+query_073,City=Sofia AND Surname=Parker
+query_074,Surname=Johnson AND Age=44
+query_075,Surname=Bell AND Name=Filippo
+query_076,Profession=entrepreneur AND Surname=Gonzalez
+query_077,Profession=hairstylist AND City=Honolulu AND Surname=Wallace
+query_078,Profession=astronomer AND City=Santiago AND Surname=Murphy AND Age=45 AND Name=Claire
+query_079,Profession=electrician AND City=Porto
+query_080,Profession=fire fighter AND Surname=Smith
+query_081,Surname=Hernandez AND Name=David
+query_082,Profession=baker AND City=Lima AND Age=30
+query_083,Profession=physiotherapist AND Surname=Graham
+query_084,Surname=Brown AND Age=103
+query_085,Profession=hairstylist AND Name=Cody
+query_086,City=Sarajevo AND Surname=Gonzalez
+query_087,Profession=management consultant AND City=Brussels
+query_088,Surname=Ward
+query_089,Profession=airline pilot AND Surname=Torres AND Name=Christina
+query_090,City=Lima AND Surname=Watson AND Name=Brooke
+query_091,Surname=Lopez AND Age=83
+query_092,Profession=civil engineer AND City=Miami
+query_093,City=Cluj-Napoca AND Age=102
+query_094,City=Dublin AND Surname=Russell
+query_095,Profession=agricultural scientist AND City=Minsk
+query_096,Profession=agricultural technologist AND City=Miami
+query_097,Profession=advertising executive AND City=Beijing AND Surname=Alexander AND Name=Delilah
+query_098,Profession=public relations specialist AND City=Riga AND Name=Michael
+query_099,Profession=writer AND City=Dubrovnik
+query_100,City=Buenos Aires AND Name=Charlotte
