@@ -1,31 +1,31 @@
 id,content
-query_01,Profession=aircraft mechanic AND City=Mexico City AND Name=Angela
-query_02,Profession=automotive engineer AND City=Ljubljana
-query_03,Profession=environmental engineer AND Surname=Allen
-query_04,City=Rome AND Age=27 AND Name=Olivia
-query_05,City=Belgrade AND Surname=Cox AND Age=57
-query_06,Profession=occupational therapist AND Surname=Moore
-query_07,Surname=Torres AND Age=23
-query_08,Profession=astronaut AND Surname=Smith
-query_09,Profession=plumber AND Age=81
-query_10,City=Hawaii AND Name=Alexander
-query_11,Profession=interior designer AND Surname=Washington
-query_12,City=Tirana AND Surname=Sullivan AND Name=Noah
-query_13,Name=Kee
-query_14,Profession=dentist AND Surname=Wallace AND Age=100
-query_15,Profession=financial planner AND City=Baku AND Surname=Thompson
-query_16,Surname=Graham AND Name=Ainsley
-query_17,Surname=Lopez AND Name=Aiden
-query_18,City=Yerevan AND Surname=Jenkins
-query_19,City=Buenos Aires AND Age=88
-query_20,Profession=psychologist AND Name=Delilah
-query_21,Profession=dietitian AND Surname=Rivera AND Name=Clara
-query_22,Profession=hairstylist AND Name=Ivano
-query_23,Surname=Wright AND Name=Dakota
-query_24,Surname=Howard AND Age=13
-query_25,Profession=doctor AND Surname=Harris
-query_26,Surname=Coleman AND Name=Olivia
-query_27,Profession=market researcher AND City=Zurich AND Surname=Morgan
-query_28,Profession=plumber AND City=Cologne AND Age=90
-query_29,Surname=Brooks AND Age=34 AND Name=Aiden
-query_30,Profession=electrician AND City=Kuala Lumpur AND Surname=Coleman AND Age=13 AND Name=Ivano
+query_01,Surname=Washington AND Name=Elizabeth
+query_02,Name=Campbell
+query_03,Profession=registered nurse AND Name=Emily
+query_04,Profession=architect AND City=Miami AND Name=Madison
+query_05,Name=William
+query_06,Profession=massage therapist AND City=Santiago AND Name=Coulomb
+query_07,Age=49
+query_08,Profession=prisoner AND Age=97 AND Name=Lanciotte
+query_09,Profession=advertising executive AND City=Rome
+query_10,Surname=Davis AND Age=55 AND Name=Daisy
+query_11,Profession=software developer AND City=Honolulu
+query_12,Profession=botanist AND City=Wellington
+query_13,Profession=judge AND City=Belgrade AND Surname=Cook AND Age=13 AND Name=Alexandra
+query_14,Age=73 AND Name=Ainsley
+query_15,Profession=meteorologist AND Surname=Griffin
+query_16,City=Madrid AND Age=22
+query_17,Profession=adult education teacher AND Name=Alexander
+query_18,Profession=lawyer AND Surname=Graham AND Age=92
+query_19,Profession=environmental engineer AND Name=Autumn
+query_20,Surname=Butler AND Age=87
+query_21,Profession=athletic trainer AND Surname=Green
+query_22,Age=88 AND Name=Finley
+query_23,Profession=financial planner AND Age=67
+query_24,Surname=Murphy AND Age=74 AND Name=Filippo
+query_25,Profession=adult education teacher
+query_26,Profession=sales representative AND Age=33
+query_27,Profession=writer AND Surname=Brooks
+query_28,City=Mexico City AND Surname=West AND Name=Alexis
+query_29,Profession=adult education teacher AND City=Marseille
+query_30,Profession=mechanical engineer AND Surname=Patterson

@@ -1,31 +1,31 @@
 id,content
-query_01,Surname=Morgan AND Name=Dylan
-query_02,Surname=Collins
-query_03,Surname=Adams
-query_04,Profession=electrician AND City=Marseille AND Age=66
-query_05,City=Copenhagen AND Age=87
-query_06,Profession=veterinarian AND Name=Aria
-query_07,Age=67 AND Name=Allie
-query_08,City=Rome AND Name=Filippo
-query_09,City=Moscow AND Surname=Hernandez AND Age=40
-query_10,Surname=Anderson AND Name=Dale
-query_11,Profession=automotive engineer AND Surname=Taylor AND Age=47 AND Name=Aiden
-query_12,Profession=agricultural technologist AND Surname=Howard
-query_13,City=Hanover
-query_14,Profession=mechanical engineer AND City=Auckland AND Surname=Martinez AND Name=Colton
-query_15,Profession=housewife AND Surname=Cooper AND Age=30
-query_16,Surname=Hernandez AND Age=89 AND Name=Ivano
-query_17,Surname=Thompson AND Age=19
-query_18,Surname=Alexander AND Name=Brooklyn
-query_19,Surname=Phillips AND Age=46
-query_20,City=Amsterdam AND Name=Christopher
-query_21,City=Buenos Aires
-query_22,City=Plzen AND Name=Adriana
-query_23,Profession=archaeologist AND Age=46
-query_24,City=Kiev AND Surname=Stewart AND Name=Sophia
-query_25,Surname=Jenkins AND Name=Carter
-query_26,City=Sofia AND Name=Faith
-query_27,Surname=Lopez AND Age=27 AND Name=Brooklyn
-query_28,Surname=Ramirez AND Name=Michael
-query_29,City=Bologna
-query_30,Profession=veterinarian AND Age=19 AND Name=Annie
+query_01,Profession=homeopath AND City=Hong Kong AND Surname=Patterson
+query_02,Age=80 AND Name=Olivia
+query_03,City=Shanghai AND Name=Christian
+query_04,Surname=Davis
+query_05,Profession=data scientist AND City=Amsterdam AND Name=Michael
+query_06,Surname=Woods AND Name=Andrew
+query_07,Profession=environmental engineer AND City=Helsinki AND Surname=Sullivan
+query_08,Profession=environmental scientist AND Surname=Hayward
+query_09,Profession=business manager AND City=Vilnius AND Age=26
+query_10,Name=Adriana
+query_11,Profession=librarian AND Surname=Butler
+query_12,City=Gdansk
+query_13,Profession=electrician AND Surname=Ward AND Age=82 AND Name=William
+query_14,City=Tauranga AND Name=Evelyn
+query_15,Profession=plumber AND City=Frankfurt
+query_16,Profession=animal trainer AND Surname=Evans
+query_17,Profession=massage therapist AND Surname=Powell AND Age=35
+query_18,Profession=electronics engineer AND Name=Brayden
+query_19,Profession=journalist AND City=Montreal AND Surname=Hughes AND Age=17 AND Name=Scottex
+query_20,City=Zurich AND Age=9
+query_21,Surname=Brown
+query_22,Age=34 AND Name=Alexander
+query_23,Profession=business manager AND City=Krakow AND Surname=Hughes AND Age=28
+query_24,Surname=Cole AND Name=Dale
+query_25,Profession=entrepreneur AND City=Amsterdam AND Surname=Parker AND Age=54
+query_26,Surname=Gray AND Name=Kek
+query_27,City=Krakow AND Age=69
+query_28,Age=46
+query_29,City=San Francisco AND Age=92
+query_30,Surname=Rodriguez
