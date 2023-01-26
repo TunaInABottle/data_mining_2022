@@ -5,7 +5,7 @@ import pandas as pd
 from typing import List
 from svd_flood import controlled_flooding
 
-data_source = "size_30" # which folder in data has the reference data
+data_source = "size_30_3" # which folder in data has the reference data
 
 def main():
     utility_matrix: pd.DataFrame = pd.read_csv("../data/" + data_source + "/utility_matrix.csv")

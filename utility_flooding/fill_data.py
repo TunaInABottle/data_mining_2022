@@ -7,11 +7,18 @@ import warnings
 warnings.filterwarnings("error")
 
 
-def collaborative_filtering(df_to_fill: pd.DataFrame) -> pd.DataFrame:
+def collaborative_filtering(df_to_fill: pd.DataFrame, allow_col_all_nan: bool = False) -> pd.DataFrame:
     """Fill the matrix with collaborative filtering
     
+    TODO Handle case when a column has all NaN values (average is NaN) (not needed)
+    
     :param df_to_fill: the matrix to fill
+    :param allow_col_all_nan: If true, a passed dataframe can have all NaN (Default: false)
     :returns: dataframe whose null are filled with collaborative filtering"""
+
+    if not allow_col_all_nan and any( df_to_fill.isna().sum() == df_to_fill.shape[0]):
+        raise Exception(f"This dataframe has a column with all NaN values")
+
     return_df = df_to_fill.copy()
     centered_df, col_means = item_centering_filling(df_to_fill.copy())
     
@@ -25,6 +32,7 @@ def collaborative_filtering(df_to_fill: pd.DataFrame) -> pd.DataFrame:
                 user_rates.pop(j) #remove the rate of the column to fill
 
                 cell_value = (np.dot(col_similarities, user_rates)/sum(col_similarities)) + col_means[df_to_fill.columns[j]]
+                
                 cell_value = min(max(int(cell_value), 0), 100) #round to the nearest integer and clamp between 0 and 100
                 #print(f"end value in cell {i} {j} = cell_value")
                 return_df.iloc[i,j] = cell_value
