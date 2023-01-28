@@ -27,8 +27,10 @@ def controlled_flooding(utility_matrix: pd.DataFrame, asked_queries: pd.DataFram
     :returns: the filled utility matrix"""
 
     new_matrix = utility_matrix.copy()
+    iter = 0
     while density(new_matrix) != 1:
-        print(f"New iteration... current density = {density(new_matrix)}")
+        iter += 1
+        print(f"Iteration {iter} current density = {density(new_matrix)}")
         queries_to_fill = pick_best_query_set(new_matrix, asked_queries, query_combinations)
         query_ids = select_queries_subset(queries_to_fill, asked_queries)["id"]
 
@@ -85,19 +87,19 @@ def pick_best_query_set(utility_matrix: pd.DataFrame, asked_queries: pd.DataFram
 
         # pick a dense brother in the next iteration if no non-dense brother is available
         if query_optimum == query_parent:
-            print("removing cap")
+            #print("removing cap")
             cap = False
             continue
         # go back in the tree if there is no available brother
         if query_optimum == query_parent and not cap:
-            print("going to the parent, re-adding cap")
+            #print("going to the parent, re-adding cap")
             query_parent = get_a_grandparent(query_parent)
             cap = True
         if query_parent == {}:
             break
 
 
-    print(f"picking best subset: {subset_maximiser}")
+    #print(f"picking best subset: {subset_maximiser}")
     return(subset_maximiser)
 
 def get_a_grandparent(query_dict: Query) -> Query:
@@ -169,7 +171,7 @@ def greedy_pick_query_subset(utility_matrix: pd.DataFrame, start_query: Query, a
             child = candidate_by_key
             trace = parent
 
-    print(f"child: {child} - trace: {trace}")
+    #print(f"child: {child} - trace: {trace}")
     
     return child[0], trace[0]
 
