@@ -4,8 +4,17 @@
 import pandas as pd
 from typing import List
 from svd_flood import controlled_flooding
+import sys
 
-data_source = "size_30_3" # which folder in data has the reference data
+data_source = ""
+
+if len(sys.argv) > 2:
+    print("Too many arguments")
+    exit(1)
+elif len(sys.argv) == 2:
+    data_source = sys.argv[1]
+else:
+    data_source = "size_30_1" # which folder in data has the reference data
 
 def main():
     utility_matrix: pd.DataFrame = pd.read_csv("../data/" + data_source + "/utility_matrix.csv")
