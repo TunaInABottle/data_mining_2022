@@ -115,4 +115,35 @@ def cross_validation(utility_matrix, asked_queries, query_combinations, n_folds)
     # Add the error of iteration i
     s+= test_err (utility_matrix, asked_queries, query_combinations, new_df, l)
   return(s/n_folds)
-    
+
+def Precision_Recall (utility_matrix, asked_queries, query_combinations, n_folds=10, tpred=20, pred=70):
+  TP=0
+  TP_FN=0
+  Recomm_queries=0
+  s=0
+  for j in range (n_folds):
+    masked_matrix, L= create_folds (utility_matrix, j, n_folds)
+    filled_masked_utility= controlled_flooding(masked_matrix, asked_queries, query_combinations) 
+    filled_masked_utility=np.array(filled_masked_utility.drop('user_id', axis=1))
+    k=0
+    if len(L)>0 :
+      for i in L:
+        k+= (i[0] - filled_masked_utility[i[1], i[2]])**2
+      k=math.sqrt(k/len(L))
+    s+=k
+    for i in L:
+      if abs(i[0] - filled_masked_utility[i[1], i[2]])<= tpred:
+        TP_FN+=1
+        if filled_masked_utility[i[1], i[2]] >= pred:
+          TP+=1
+      if filled_masked_utility[i[1], i[2]] >= pred:
+        Recomm_queries+=1
+  s=s/n_folds 
+  return(s, TP, TP_FN, Recomm_queries )
+
+def Precision (TP, pred):
+  return(TP/pred)
+def Recall (TP,TP_FN):
+  return(TP/TP_FN)
+def F1_score (precision, recall):
+  return(2*precision*recall/(precision+recall))
